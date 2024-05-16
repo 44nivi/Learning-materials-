@@ -1,0 +1,60 @@
+What is a PREPROCESSING?
+Deep Learning models cannot understand human readable texts. It needs conversion
+from text to model understandable format. It takes all text files from the dataset and does
+all the processing like noise cleaning, tokenization, words to index conversion, padding
+&amp; slicing and label to index conversion. These steps are called text preprocessing in the
+NLP (Natural Language Processing) domain. This process will convert texts to model
+understandable format, which is called preprocessed files.
+
+Step - 1: Data/File Read
+● Download the dataset zip file from the gdrive and unzip it. (dataset also known as
+corpus)
+
+Read content of all the files and make it as a csv file. csv file should contain 3 columns
+named, id, text and label.
+
+
+step -2 : Noise cleaning
+● Remove all non alphanumeric characters from the each text
+● Make all texts to lowercase
+
+Step - 3: Tokenization
+● It is a process of converting text into words/tokens (words are also meant by tokens in
+ML terminology).
+● Use spacy module and en_core_web_sm model for tokenization
+● Dump output in the pickle file
+
+
+Step -4 :Text to index and index to text
+(Before the process make sure to take the frequency counter and filter the token as vocab.
+create word to index and Index to word .
+save the both as pickle file .
+
+Step - 5: Labels map creation
+● Label to index map: Each label in the corpus should be assigned integer value starting
+from 0.
+(Example: Class A, Class B, Class C. {Class A: 0, Class B:1, Class C:2})
+
+Index to label map: Reverse map of the label to index.
+● Save label to index and index to label in json file.
+
+
+Step - 5: Padding and Slicing
+● Find MAX_SEQ_LENGTH. MAX_SEQ_LENGTH is the average token length of the
+corpus.
+● Each document should have the same token length.
+● Slicing: Discard the tokens greater than MAX_SEQ_LENGTH in each document.
+● Padding: Append &lt;PAD&gt; token to the document until token length reaches the
+MAX_SEQ_LENGTH.
+● Assertion (addition check): Check all the documents have the same length and the
+length is equal to MAX_SEQ_LENGTH.
+
+Step 6:
+Additional Enhancement with parallelization:
+● Step - 1 Improvization: Speed up file reading by multi threading.
+● Step - 2 Improvization: Speed up tokenization by multi processing (either using
+concurrent.futures or multiprocessing module).
+● Compare time metrics between with &amp; without parallelization for above 2 steps.
+
+
+

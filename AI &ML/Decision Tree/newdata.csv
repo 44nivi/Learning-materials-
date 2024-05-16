@@ -1,0 +1,16 @@
+Exam Result,Other online courses,Student background,Working Status
+pass,y,maths,nw
+fail,n,maths,w
+fail,y,maths,w
+pass,y,cs,nw
+fail,n,other,w
+fail,y,other,w
+pass,y,maths,nw
+pass,y,cs,nw
+pass,n,maths,w
+pass,n,cs,w
+pass,y,cs,w
+pass,n,maths,nw
+fail,y,other,w
+fail,n,other,nw
+fail,n,maths,w
