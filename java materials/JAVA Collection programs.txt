@@ -1,0 +1,10 @@
+1.Write a python program to perform stack implementation using the collection module and search for the position of an element into the stack using Linear search algorithm.
+
+2. Write a Java program to append the specified element to the end of a hash set and to compare two sets to retain elements that are the same. finally empty the hash set created and print Success status.
+
+3.Write a Java program to remove the third element from an array list and sort a given array list.Finally to replace the second element of an ArrayList with the specified element.
+
+4.Write a Java program to count the number of key-value (size) mappings in a map and check if a map contains a mapping for the specified key.
+
+5.Write a Java program to check if a particular element exists in a linked list . If exist replace the element in a linked list with any other element.
+ 

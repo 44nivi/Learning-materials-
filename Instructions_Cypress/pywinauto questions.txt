@@ -1,0 +1,22 @@
+1.what is menu_select           -1
+2.how to set the time to make the execution to wait until 10 sec
+3.why do we use popen -1
+4.what is dialog in popen?   -1
+5.What are the different ways to open application in pywinauto -1
+6.what are the pywinauto supported GUI controls?
+7.which key word is used to enter the text in a notepad -1
+8.what is combobox?
+9.what is %N used for ? 
+10.how to clear the text in notepad using pywinautomate ?
+11.how to make the application to wait untill it get loaded?
+12.what is __init__?
+13.what is wrapper object in pywinauto?
+14.how to delete the sentence using pywinauto.keyboard?
+15.how to perform mouse action in pywinauto?
+16.what is __getattribute__?
+17.what is wait and what is waitnot ?
+18.what is findbestmatch ?
+19.what is **kwargs?
+20.what is the difference between set text and type keys
+21.what is the difference between send keys and type keys 
+

@@ -1,0 +1,81 @@
+Introduction to cypress 
+what is cypress and future of automation 
+Understand cypress architecture and its benefits
+
+Cypress installation and project setup
+Install node.js and vs code
+Generate package .json and get cypress dependencies
+
+Introduction to cypress Test Runner and command line features
+What is cypress testrunner
+Build cypress basic test and run from test runner.
+Runing cypress test in supported browsers 
+exploring cypress project frame work 
+
+Getting started with cypress test automation 
+cypress locator strategies and how to construct them
+cypress inbuild plugin in testrunner to generate locators
+Basic assertion in writing the tests with cypress
+Hanlding invisible elements with cypress by understanding logs.
+
+Deep diving into cypress commands and its asynchronous nature
+Understanding get and find commands with cypress
+Grabbing the text for validations using cypress text command
+Cypress asynchronous nature and its promise handling 
+Understanding the difference between jquery methods and cypress commands 
+Hanlding async promsises with cypress
+Completing the practise test with all necessary validations.
+
+Handling webcontrols UI using cypress
+How to verify and automate checkboxes with cypress 
+Handling static dropdowns using select command with cypress 
+Handling Dynamic dropdowns with each command iteration 
+Handling visible and invisible elements using assertions in cypress 
+
+Advane automation to handling alers ,popups ,child windows using cypress-jquery 
+How cypress auto handles alerts in web apps 
+Handling child tab with combination of cypress and jquery commands 
+Navigating browser contrls using cypress 
+Handling web tables with cypress using each command 
+Hanlding mouse hover popups with cypress 
+
+Understand limitations of Frames and child windows in cypress 
+Handling child windows using cypress
+Liitations of frames with cypress
+
+Cypress Framework Part 1- Understandng fixtures and custom commands 
+Agenda of framework topucs and starting with test building
+Understand how fixtures work in driving data
+Validating attribute properties and their behaviour with cypress assertions 
+Building customized cypress commands for reusing the code 
+
+Cypress framework part2 - Page object Design & Test Parameterization 
+Parametrizing the test data from json files using each command
+Test debugging and pause with cypress 
+implementing page object design pattern into cypress 
+Modifying existing tests into page object pattern as per cypress standards.
+
+Cypress framework part-3  Configuration properties and Environmental variables 
+Implementing global configuration changes to cypress framework
+Completing end to end test execution of the business flow 
+Implementing the sum of products functionality with cypress -java script.
+practise exercise continuation on product sum values with java script methods .
+Imporatace of environmental variables in cypress framework .
+Setting env variables through command line arguments
+
+Cypress framework part-4 Dashboard feature with -video recording and screenshots 
+Exploring cypress dashboard and its feature for framework development 
+Monitoring test execution videos and screenshots through cypress dashboard 
+Generating mocha swesome reports for cypress execution 
+
+Cypress framework part-5 Building npm scripts 
+Understanding scripting commands in package.json file for ci integration 
+Running multiple specs file on fly from cypress scriptting commands .
+
+XHR testing with cypress 
+Introduction to xhr testing and how its helps in writing edge test cases.
+Listening to GET  network request call with route command
+Manipulating POST network request call with route command 
+Mocking API calls with cypress route command 
+Example demonstrating on mocking API with stub response using cypress 
+Handling API call directly with out involving browser with cypress

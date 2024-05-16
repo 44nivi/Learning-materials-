@@ -1,0 +1,391 @@
+Install cypress Cucumber With BDD Framework
+
+->open VS code
+Install Comments:
+	-> npm init  -> press Enter 
+	-> npm install cypress --save-dev
+	-> node_modules\.bin\cypress open
+	-> node_modules\.bin\cypress run       //to run without headed
+	->node_modules\.bin\cypress run --headed     // to run with browser 
+Cypress supports mocha language only.
+
+
+_____________________________________________________
+
+
+Cypress folder structure :
+ e2e - the test spec files are written here 
+ fixtures - supports all the supporting datas like credentials can be stored here
+support -support folder have the additional repetive functions
+
+node_modules folder - imported node 
+cypress.config- use to accept the user defined configuration.
+package - user to import the dependency 
+
+
+**************************************Instructions*******************
+
+cypress automatically save when each items are added 
+cypress
+Cypress allow us to trace the errors accurate and the reason for that 
+
+https://rahulshettyacademy.com/AutomationPractice/       - // practice website
+
+
+
+https://sites.google.com/exterro.com/exterro-academy-support-for-sa/home
+
+
+
+Any program that build through node js is Asynchronous - meaning : it hit the server at the same time 
+					 synchronous - meaning :it hit the server in a sequential manner 
+cypress is asynchronous in nature , but it take care of execution makes feel the end user as sequential execution 
+
+Promises: Promise is a condition given , when the step is executed only it will move to the next step 
+promise is achieved by then().
+Hence where we have to stop the process to continue we need to apply then() but
+Cypress tells you each promises are done using then() by default in each line of cypress ,
+hence we need to focus only on the program.
+
+________________________________________________________
+css locators :
+cypress supports only css locators .
+way to write css locators :
+id -         tagname#idname
+class-       tag.classname
+attribute-   input[type='search']
+or 
+get the css selector using chro path
+or 
+get the css selector using cypress locators 
+ 
+__________________________________________________________
+cypress program keywords to remember:
+
+add baseurl to cypress config - call cy.get('/') in test case to load the website .
+cy.visit- enter the website
+cy.get- get the css selector
+.type - enter the text 
+.should -assertion to check any specific condition 
+	eg: have.length,4XCXCX
+	eg: 'be.visible()'
+	eg:should('have.attr'',minlength',2)
+cy.wait(3000)
+
+//parent child access
+cy.get('.product:visible').should(have.length,4)
+cy.get('.products').find(.product).eq(2).contains('ADD TO CART').click()      // eq -returns the index value  and contains check the text existence
+
+to traverse :
+cy.get('.products').find('.product').each(($el,index,$list)=> {
+      const textveg= $el.find('h4.product-name').text()
+      if(textveg.includes('Capsicum')){         // includes defines the substring from any string
+        $el.find('button').click() 
+})
+
+cy.log("hi")    // prints the given text in cypress logs
+
+statements to assign in variable using promises:
+cy.get('.brand').then(function(logoelement){
+cy.log(logoelement.text() )      // here text() is a jquery method
+}
+
+alias to reuse values:
+cy.get('.products') as ('productLocator')   // hence we can able to denote the products with aliasa name just like storing a value in a variable .
+
+cy.get('.brand').should('have.text','green')    // assertion for having the text.
+
+cy.get('select[style]').select('India')    //static drop down 
+
+
+dynamic drop down :
+    cy.get('select[style] option').each(($el,index,$list)=> {
+    if($el.text()==='India'){        
+    $el.click()      
+     }})
+
+cy.get(#idelement).should('be.visible') // for asserting an element to check the visiblity
+cy.get(#idelement).should('not.be.visible')
+
+ cy.get('input.chkAgree).check().should('be.checked') // to check the check box 
+
+cypress is capable to handle the alert by iteself , hence during testing 
+if the alert is not visible no worries the alert box was handled by cypress.
+
+Hence to handle the alerts manually , we can able to trigger the alert
+it can be done by the following :
+
+cy.on('window:alert',(str)=>{
+expect(str).to.equal("hello, this is a message")	// handled the alert box
+})
+
+________________________________________________________________________________________
+
+//Removing child tab from browser using jquery :
+cy.get('#opentab').invoke('removeAttr','target').click()  //remove attribute is a jquery function which remove element from the given DOM 
+							  // here target is the element from DOM 
+Navigating through browser :
+cy.go('back')			      // go function will take forward or back to navigate the browser.
+cy.url().should('include','amazon')   // sub string assertion to check whether the given string is in the url or not 
+
+
+iterate a table and assert:
+cy.get('tr td:nth-child(2)').each(($e1, index, $list) => {    //nth-child(2) is an other way of moving from parent to child 
+
+    const text=$e1.text()
+    if(text.includes("Roland"))
+    {
+
+        cy.get("tr td:nth-child(2)").eq(index).next().then(function(country)     // next() is used to move the control from given column to next column
+        {
+         const country=   country.text()
+         expect(country).to.equal('Austria')				       // asserting the given value with the occured value 
+        })
+    }
+
+})
+
+
+Mouse hover: 
+In general mouse hover is not supported in cypressq , hence you can use jquery or {force:true} click . eg:
+
+cy.get('.parentclass').invoke('show')            // show method trigger the hidden elements of a particular class
+cy.contains('TOP').click()			 // hence the mouse hover elements are displayed , click on the neccessary button contains
+cy.url.should('include','top')  // if url changes with this values , you can assert whether the top value is given in url or not 
+
+
+even you can follow {force:true} inside the click method to invoke hidden elements insetead of 'show'
+eg: cy.contains('TOP').click({force:true})			// here it invokes hidden elements and hence can be clicked.
+cy.url.should('include','top')
+
+_______________________________________________________________________________________
+Fetch the url from href:
+
+cy.get('#opentab').then(function(el){
+const url=el.prop('href')    			// prop function use to extract the property elements mentioned inside the brackets.
+cy.log(url)					// as it is jquery command it needs promises.
+}
+
+
+working with frames:
+npm install -D cypress-iframe
+
+install the above iframe and implement in program as given 
+
+cy.frameLoaded('#course-frame")				    // load the frame 
+cy.iframe().find("a[href="mentorship"]").eq(0).click()     // then load the href as per index and click to access
+
+
+______________________________________________________________________________________________
+describe("my second test",function()){
+
+before(function(){
+cy.fixture()
+}
+
+it("my first test case ",function(){
+cy.visit("www.amazon.com")
+cy.get('select').select("female")
+})
+}
+
+Declaring the values in fixture :
+create a json file in fixture and give the value 
+eg: {"name":"Nivek"}
+
+call the value from fixture to function using :
+cy.fixture('example').then(function(data){
+this.data=data        // since it is assigned with this.data - it means it is declared globally 
+}
+
+declare the multiple values in fixture:
+
+following the same above step and declare the multiple values in an array .
+eg: 
+{ productname: ["iphone","apple"] }
+
+use this on the test case and traverse it for each element.
+eg:
+this.data.productName.forEach(function(element){   // forEach is a javascript function .
+cy.log(element)
+})    
+
+Building Customized cypress commands :
+
+create a user defined customized cypress commands in support folder.
+create a function in support folder .
+eg: 
+Cypress.commands.add("selectProduct",(productname)=>{     //add a function named - selectProduct
+cy.get('h4.card-title').each($el,index,$list)=>{
+if($el.text().includes(productname)){
+cy.get('button').eq(index).click()
+}
+})
+})
+
+hence you can use the function - cy.selectProduct("iphone")
+
+cy.pause() - pause the test where we declared. We have to resume the test by clicking resume button on the top 
+
+
+PageObjectModel:
+step1: create a seperate cy.js file to create a class with export. create a function and return the cy.get() 
+step2: import to test case file eg:import HomePage from "./PageObject/Home.cy"
+step3: create a object for the class file - const homepage=new HomePage()
+step4: use object to invoke the function and get the value eg: homepage.getsearch().type(this.data.name)
+
+setup up config:
+from cypress.config.js -   
+ e2e: {
+    baseUrl:"https://rahulshettyacademy.com/seleniumPractise/#/"
+  }								// use the base url 
+
+load the url on e2e file using cy.visit(Cypress.config().baseurl)
+
+you can also set the time for test case or individual statments or in global .
+
+i)  Cypress.config('pageLoadTimeout',8000)  		// set up individual config for pageload
+
+ii)  pageLoadTimeout : '8000'  				// set up time globally
+
+
+To run the test case through cmd terminal :
+
+i) node_modules\.bin\cypress run --spec cypress\e2e\1-getting-started\todo.cy.js    // in terminal alone 
+ii)node_modules\.bin\cypress run --spec cypress\e2e\1-getting-started\todo.cy.js --headed      // open through browser
+
+Generating Reports using cypress dash board 
+Google - cypress dashboard report -> click new project -> copy the id generatedd to config.js in vscode
+->copy the key generated and run the key in terminal.
+Monitor the screenshots and videos 
+
+Generate the Mocha reports:
+Install mochaawesome and mocha 
+i)npm install --save-dev mochawesome
+ii)npm install --save-dev mocha
+
+run the mocha report like ->  node_modules\.bin\cypress  run --spec cypress\e2e\1-getting-started\todo.cy.js --reporter mochawesome
+
+
+Generating Scripting commands in package.json :
+we can able to generate the script inside the script{} to run each test 
+each can be run with the command -   npm run test      // test denotes the name of the test inside script
+
+"scripts": {
+    "test": "node_modules\\.bin\\cypress  run",        // 
+    "headedTest": "npm run test -- --headed",
+    "ChromeTest": "npm run test -- --browser chrome",
+    "cypressDashboard": "npm run test -- --spec cypress\\e2e\\1-getting-started\\todo.cy.js --reporter mochawesome"
+  },
+
+
+________________________________________________________________________________________________
+BDD : Cucumber :
+
+Make sure the installation and configuration steps for cypress-cucumber:
+
+Install : 
+npm install -D @badeball/cypress-cucumber-preprocessor
+npm i cypress @bahmutov/cypress-esbuild-preprocessor esbuild
+
+config cypress:
+	const { defineConfig } = require("cypress");
+	const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+	const addCucumberPreprocessorPlugin =
+	require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
+	const createEsbuildPlugin =
+	require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+	module.exports = defineConfig({
+	e2e: {
+		async setupNodeEvents(on, config) {
+		const bundler = createBundler({
+		plugins: [createEsbuildPlugin(config)],
+
+	baseUrl:"https://rahulshettyacademy.com/seleniumPractise/#/",
+	});
+
+	on("file:preprocessor", bundler);
+	await addCucumberPreprocessorPlugin(on, config);
+
+	return config;
+	},
+	specPattern: "cypress/e2e/**/*.feature",
+	},
+	});
+
+
+also add the given script to package.json 
+
+"cypress-cucumber-preprocessor": {
+    "steps": [
+      "cypress\\e2e\\1-getting-started\\Tester\\*.js"
+    ]
+  }
+
+now create a Tester.feature file - In a location 
+eg:
+Feature: Login to a website
+
+  Scenario: Successful login
+
+    Given I open the website
+
+    When I enter my username "myusername" and password "mypassword"
+
+    And I click the login button
+
+    Then I should be logged in
+
+Create a stepdef folder with same name as Feature file Tester
+Create the stepdef file.js inside the folder 
+use the give,and,then,when functions and copy the feature inside the parameter of the function 
+eg:
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+
+Given("User is at the login page", function() {
+    cy.visit('https://opensource-demo.orangehrmlive.com/')
+});
+
+When("User enters username as {string} and password as {string}", (username, password) => {
+    cy.get('#txtUsername').type(username)
+    cy.get('#txtPassword').type(password)
+});
+
+Then("User clicks on login button", () => {
+    cy.get('#btnLogin').click()
+});
+
+Then("User is able to successfully login to the Website", () => {
+    cy.get('#welcome').should('be.visible', {timeout: 10000})
+});	
+
+Write down the cypress commands inside each test case functions and perform actions .
+
+
+create multiple test case inside feature file and tag them with testcase names like @smoke,@regression etc ..
+
+to run with the tag name -npx cypress-tags run -e TAGS="@Smoke" --headed 
+
+
+
+Reference Links:
+           https://testersdock.com/cypress-cucumber-bdd/
+           *https://blog.emumba.com/getting-started-with-cypress-10-and-cucumber-6b43ff68633b
+           *https://kailash-pathak.medium.com/how-to-integrate-cucumber-in-cypress-10-8c91033af9b7
+           https://testersdock.com/page/2/?s=cypress
+
+
+OVERALL :
+Locators
+Customized cypress Commands
+Fixture 
+POM 
+Cucumber configuration and Structure
+
+
+
+
+
+
+
+ 

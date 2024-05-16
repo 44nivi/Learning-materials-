@@ -1,0 +1,154 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Cascadia Mono;}{\f2\fnil\fcharset0 Cascadia Mono;}}
+{\colortbl ;\red255\green255\blue0;\red0\green0\blue0;\red0\green0\blue255;\red43\green145\blue175;\red0\green128\blue0;\red163\green21\blue21;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs32\lang9\tab\tab\tab\tab\tab Collections \fs28\par
+Collection is meant for Dynamic array . \par
+\b0\fs22 1.  \i\fs28 Once a normal array if we declare it cannot change its size .\i0\fs22\par
+eg: int[] arr=new int[10]\par
+We can change the size of an array by two methods : \par
+i) \highlight1 creating new array \highlight0 with new size manually and copy the old value to new array \par
+
+\pard\ri-448\sa200\sl276\slmult1\tx8662\tx8804 ii\highlight1 ) Array .Resize predefiend class \highlight0 help us resize .( even it create new array and copy the value) \par
+
+\pard\sa200\sl276\slmult1 eg: \par
+\fs18 class program \{\par
+static void Main (String [] args)\par
+\{\par
+int[] arr=new int [10];\par
+Array.Resize(ref arr,15)          // here ref keyword refer the array and 15 is  new size of array)\par
+\}\par
+\}\par
+\i\fs28 2.Inserting values in the middle \par
+3. Removing the values in the middle \b\par
+\i0 that is why we depend on collection \par
+\b0\i i) collection can increase the size automatically when we keep adding the values \par
+ii)we can insert the values in the middle of the values \par
+iii)we can able to remove the values from the middle .\par
+\i0 ________________________________________________________________\par
+Collections which is introduced  in 1.0 version is called \b Non-Generic Collections.\par
+\highlight1\b0 eg: Stack,Queue ,LinkedList , SortedList ,ArrayList,Hashtable\highlight0\par
+________________________________________________________________\par
+what is the difference between the Array and ArrayList ?\par
+Array - Fixed Length \tab\tab\tab       Array List - Variable length \par
+Not possible to insert items in middle       we can insert items in middle\par
+Not possible to delete items in middle       we can delete the items in middle\par
+________________________________________________________________\par
+the capacity of ArrayList by default is 0\par
+when you add the item in arraylist then the capacity will be 4 then 8 then 16 and so on..\par
+_______________________________________________________________\par
+Hashtable :\par
+In array & arraylist the values are stored in the key and value method where key is considered as index and it cannot be changed .\par
+But in Hash table we can assign the userdefined key to store the values .\par
+eg: \{ "id":02,"name":"nivi"\}\par
+________________________________________________________________\par
+The problem with collection is , it is not type safe , it can save any kinds of type values in the collection  while array is type safe .\par
+To provide type safe and variable size in c# 2.0 it brings Generic collection.\par
+\b\fs32 Generic collection:\b0\fs28\par
+=>   Type safe and auto resizing \par
+array in the class we generally call it as List \par
+\highlight1 eg of Generic collections : \i List , SortedList, Dictionary , Stack ,Queue\par
+\highlight0\i0\par
+List<t> - t represent the type of values we gona store it on the list \par
+eg: List<int> li =new List<int> ();\par
+List<string> ls= new List<string>();\par
+also we can create a class type as follows :\par
+public class Customer\{\par
+public int custid \{ get;set;\}\par
+public String name\{get;set;\}\par
+\}\par
+List<Customer>customer=new List<Customer>();\par
+Hence the collection is called generic collections\par
+\b example 1: \b0\par
+\b Generic methods :\b0\par
+class Generic_Sample\{\par
+\cf2\f1\fs19   \cf3 public\cf2  \cf3 bool\cf2  \highlight1 compare<\cf4 T\cf2 >(T a, T b)        \highlight0\par
+        \{\par
+            \cf3 if\cf2  (a.Equals(b))\par
+                \cf3 return\cf2  \cf3 true\cf2 ;\par
+            \cf3 return\cf2  \cf3 false\cf2 ;\par
+\par
+        \}\cf0\f0\fs28\par
+public static void Main(String[] args)\{\par
+\cf2\f1\fs19   Generic_Type_function obj2 = \cf3 new\cf2  Generic_Type_function();\par
+   \cf3 object\cf2  var2 = obj2.compare\highlight1 <\cf3 float\cf2 >(\highlight0 3.5f, 3.5f);\cf0\f0\fs28\par
+\}\par
+\}\par
+Example 2:\par
+\b Generic Class \par
+\cf2\b0\f1\fs19  \cf3 public\cf2  \cf3 class\cf2  \cf4\highlight1 Genric_Assigner\cf2 <\cf4 T\cf2 >         \cf5\highlight0 //Generic class that refer the data types dynamically ,once data type is declared\cf2\f2\lang1033  \cf5\f1\lang9 then the whole method occur the same data types\cf2\par
+    \{\par
+        \cf3 public\cf2  \cf3 void\cf2  \highlight1 Add(T a, T b)\highlight0\par
+        \{\par
+            dynamic d1 = a;\par
+            dynamic d2 = b;\par
+            Console.WriteLine(d1 + d2);\par
+        \}\par
+\cf3 public\cf2  \cf3 static\cf2  \cf3 void\cf2  Main(\cf3 string\cf2 [] args)\par
+        \{\par
+            Genric_\highlight1 Assigner <\cf3 int\cf2 >obj \highlight0 = \cf3 new\cf2  Genric_Assigner<\cf3 int\cf2 >();\par
+            obj.Add(10, 20);\par
+\f2\lang1033\}\par
+\}\par
+\cf0\b\f0\fs28\lang9\par
+________________________________________________________________\par
+Dictionary collection :\b0\par
+eg: \cf2\f1\fs19 Dictionary<\cf3 string\cf2 ,\cf3 object\cf2 > dic = \cf3 new\cf2  Dictionary<\cf3 string\cf2 ,\cf3 object\cf2 >();\par
+\f2\lang1033 In case of generic collection the type of values we want to store under the collections need not be pre define typed only like int ,float,char,string bool etc . but You can also be user-defined type also .\par
+Note: must always rember what data type is given to the members will the data type of the given values\par
+\cf0\b eg: of class data type :\cf3\b0\f1\par
+public\cf2  \cf3 class\cf2  \cf4 Customer\cf2\{\par
+     \cf3 public\cf2  \cf3 int\cf2  custid \{ \cf3 get\cf2 ; \cf3 set\cf2 ; \}\par
+    \cf3 public\cf2  \cf3 string\cf2  Name \{ \cf3 get\cf2 ; \cf3 set\cf2 ; \}\par
+    \cf3 public\cf2  \cf3 string\cf2  city \{ \cf3 get\cf2 ; \cf3 set\cf2 ; \}\par
+    \cf3 public\cf2  \cf3 int\cf2  Balance \{ \cf3 get\cf2 ; \cf3 set\cf2 ; \}\par
+        \}\par
+    \cf3 internal\cf2  \cf3 class\cf2  \cf4 Class_Datatype\cf2\par
+    \{\par
+        \cf3 public\cf2  \cf3 static\cf2  \cf3 void\cf2  Main(String[] args)\par
+        \{\par
+            List<Customer> list = \cf3 new\cf2  List<Customer>();\par
+            Customer c1 = \cf3 new\cf2  Customer \{ custid=101,Name=\cf6 "NIVI"\cf2 ,city=\cf6 "CBE"\cf2 ,Balance=25000\};\par
+            Customer c2 = \cf3 new\cf2  Customer \{ custid = 101, Name = \cf6 "VIVI"\cf2 , city = \cf6 "CBE"\cf2 , Balance = 25000 \};\par
+            Customer C3 = \cf3 new\cf2  Customer \{ custid = 101, Name = \cf6 "PONNU"\cf2 , city = \cf6 "CBE"\cf2 , Balance = 25000 \};\par
+            list.Add(c1);\par
+            list.Add(c2);\par
+            list.Add(C3);\par
+            \cf3 foreach\cf2 (Customer c \cf3 in\cf2  list)\par
+            \{\par
+                Console.WriteLine(\cf6 "Customer name "\cf2 +c.Name);\par
+                Console.WriteLine(\cf6 "Customer Balance"\cf2 +c.Balance);\par
+            \}\par
+        \}\par
+\cf0\f0\fs28\lang9 ________________________________________________________________\par
+IComparable & Comparer :\par
+IComparable is an interface defined in the .NET framework that provides a way to compare the current instance of a class with another object of the same type. It's commonly used for sorting and ordering objects.\par
+eg:\par
+public class Person : IComparable<Person>\par
+\{    public string Name \{ get; set; \}\par
+    public int Age \{ get; set; \}\par
+    public int CompareTo(Person other)\tab\tab\tab\tab\tab\tab\{\tab // Compare persons based on their age\par
+        return this.Age.CompareTo(other.Age);\par
+    \}\par
+\}\cf2\f1\fs19\lang1033\par
+class Program\par
+\{    static void Main()\par
+    \{\par
+        Person[] people = \{\par
+            new Person \{ Name = "Alice", Age = 30 \},\par
+            new Person \{ Name = "Bob", Age = 25 \},\par
+            new Person \{ Name = "Charlie", Age = 35 \}\par
+        \};\par
+        Array.Sort(people); // Sorts people array based on age\par
+        foreach (var person in people)\par
+        \{   Console.WriteLine($"\{person.Name\}, \{person.Age\}");\par
+        \}\par
+    \}\par
+\}\par
+\par
+\cf0\f0\fs28\lang9\par
+\par
+\par
+\i\par
+\par
+}
+ 

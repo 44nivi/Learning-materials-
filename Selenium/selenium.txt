@@ -1,0 +1,38 @@
+locators
+
+id 
+name
+linked text
+tag name
+class name
+
+
+customized locators
+css selectors
+
+tag and id 
+tag and class 
+tag and attribute
+tag,class ,attribute 
+
+
+xml path -addresss of HTML DOM strucutre
+
+relative x path -//input[@id='email']
+absolute x path - starts with single slash
+
+
+css selector
+1.copy selector
+2.ctrl+f select in browser
+3.input#id_name
+or
+4.input[name='first name'] click enter to show the selectorr in css 
+5.input.class_name
+6.input[name^='country_c'] -cap symbol for prefix
+7.input[name$='client'] - suffix text 
+8.input[name*='try'] - substring 
+9.select#jobrole>option[value='dev'] - select direct child
+10.select#jobrole option[value='dev'] - select the sub child
+11. selecting the sibiling option[value='dev']+option[value='admin']
+

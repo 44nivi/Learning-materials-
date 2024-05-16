@@ -1,0 +1,292 @@
+Angular Features :
+1. Type supporting 
+2. generics 
+3. interpreter to compiler 
+4. super script of type script 
+5. Using Single page application 
+
+Anguar folder structure:
+important terms to be known :
+-tsconfig.json - confiugration of Type script
+-package.json - configuration of Angular
+-angular.json - configuration of project 
+
+Under source - main three files like :
+	-index.html        //global page
+	-main.ts	   // global page
+	-styles.css        // global page
+	-two folders like :
+	   * app
+	   * assets
+
+Under app folder:
+-app.module.ts
+-app.component.ts
+*app.component.spec.ts
+*app.component.html
+*app.component.css
+
+In above given app.module.ts :
+It is just like the register page where we use to import the dependency of the functions what we use in components.
+
+In above given app.component.ts:
+It is the place where we give a single component denoted with decorator "@Component" and the class which is associated with the component .
+In each component three important factors like :
+	* selector
+	* template url or template
+	* styleurl or styles 
+In the class we have class properties or the variables inside the class .
+
+In the above given app.component.html :
+This is the place where we mention all html tags .
+
+In the above given app.component.css :
+we mention the css feature related to the html tags .
+
+_____________________________________________________________
+
+Uni direction binding and Bi direction binding are the two types of data binding in angular 
+
+Unidirection binding :
+-String interpolation 
+-Property binding 
+-event Binding 
+are the types of uni direction binding .
+
+eg: 
+
+<h1>{{title}}</h1><!-- String Interpolation -->
+
+<img [src]="srctitle" alt=""><!-- property binding -->
+
+<button (click)="changeSpecificTitle(txt.value)">Change</button><!-- event binding -->
+
+<input type="text" #txt>
+
+In this {title} will take the string which is declared in the component class 
+[src] will perform the event and refer the source given in the component class 
+(click) will perform the event changes and load the value where #txt.
+
+Bi-directional binding :
+-use both property biding and event binding property [(ngModel)]="title" where title is the h1 value . Hence when ever we type anything it will reflect immediately dynamically.
+
+eg:<input type="text" [(ngModel)]="title">
+
+
+Build in directives :
+1.ngIf
+2.ngFor
+3.ngSwitch
+4.ngStyle
+5.ngClass
+6.life cycle hookes
+
+ngIf:
+It will consider which particular tag must be considered when we declare along with the tag from the component class
+
+eg: component class :
+export class AppComponent {
+  title = 'Thryaksh';
+  srctitle = "../assets/images/df.PNG";
+  flag = false;
+  
+  }
+  
+eg: 
+<h1 *ngIf="flag">IF</h1>
+<h1 *ngIf="! flag">ELSE</h1>
+
+ngFor:
+It is used to perform an iteration from the given tag .
+Before going to ngfor explanation let us consider a small example of an interface .
+To create an interface :
+ ng g interface student inside the powershell terminal .
+
+export interface Student {
+    rollNo:number;
+    name:string;
+    garde:number;
+}
+
+once the above interface is created import the student interface in the component class 
+eg:
+students:Student[] = [
+    {rollNo:101,name:"Nivek",garde:9.9},
+    {rollNo:102,name:"Mirdu",garde:7.7}
+  ]
+
+hence two or more object can be created with the help of student.from the component class the list of array is traversed with the help of ngfor without using any looping block .
+eg:
+<table>
+  <tr *ngFor="let stud of students">
+    <td>{{stud.rollNo}}</td>
+    <td>{{stud.name}}</td>
+    <td>{{stud.garde}}</td>
+  </tr>
+</table>
+
+hence the number of object created will be traversed by using *ngFor.
+
+Data binding concept from Parent to child component :
+
+step 1 : assign the msgToChild message to the parent component class .
+step 2 : call the <app-child> tag and assign parentmsg to variable inside the child from parent component.html.
+eg:<app-child11 [parentMsg]="msgToChild" ></app-child11>
+step 3 : Inside the child component class  
+  @Input() parentMsg:string ='';     //intialize parentmsg=""
+<app-user-home [logosrc] = "logosrc"></app-user-home>
+
+
+Data binding concept from child to parent component :
+step 1 : Assign the msgToparent message to the child component class.
+step 2 :  @Output() eventEmitter = new EventEmitter<string>(); declare the event emitter 
+step 3 : sendMsg(){
+   	 this.eventEmitter.emit(this.msgToParent)
+  	  }   create a function bcoz event emitter can only invoke the funtion to pass the message .
+step 4 : <app-child11 (eventEmitter)="getMsgFromChild($event)"></app-child11>
+
+____________________________________________________________________________________________________________________________________________
+Service class :
+Instead of taking an value from one component to other component class using the traditional method will not apt to the standard hence ,
+Service class is maintained where we can able to fetch the values from service class or update the values to service class .
+
+Calling and add the function from service to component class:
+To call the function from service class to component class is by creating a constructor on the component class and implement the service class using private .
+step 1: create a function on component class 
+step 2: assign the values to the function inside the service class using this .
+
+Overall call the function will be performed when the given addstudent() will be called from the html page of component.
+
+eg:
+  constructor(private studentSvc:StudentService){}
+  addStudent(){
+    this.studentSvc.addStudent({rollNo:106,name:"Bhuvanai",garde:9.5});
+  }
+
+mean while , Create an empty array inside the service class to store the values which is passed from the component class.
+create a function and call the paratmeter of the function from the component class and assign to the array created inside the service class .
+
+eg: constructor(private http:HttpClient) { }
+
+  addStudent(student:Student){
+    this.students.push(student);
+    }
+
+_________________________________________________________________________________________________________________________________________
+Getting the values from the service class to component class .
+step 1: create a constructor on component class to call the service class in it.
+step 2: Create an empty array object and assign the values fetched from service class getfunction()
+step 3: use the new array object in your component html to create a table and print the values using ngFor .
+eg :
+ students:Student[] = [];
+  constructor(private router:Router,private studSvc:StudentService ) {
+    
+  }
+  ngOnInit(): void {
+    this.students = this.studSvc.getStudents();
+}
+
+
+in html page:
+_____________________
+<table>
+    <tr *ngFor="let s of students">
+        <td>{{s.rollNo}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.garde}}</td>
+    </tr>
+</table>
+
+
+___________________________________________________________________________________________________________________________________________
+
+Router to navigate:
+Assign the router in constructor.
+step 1: create a function to navigate
+step 2: create a navigate function and mention the api where it must travel.
+eg: 
+goBack(){
+    this.router.navigate(['/child1'])
+  }
+
+create a button on html page to invoke the goback() from the component class .
+
+____________________________________________________________________________________________________________________________________________
+
+HTTP client request:
+Before adding Httpclient request import the Http client module inside app.modules
+create a constructor on service class and assign private http:HttpClient inside the parameter of the constructor.
+
+eg: 
+
+baseURL = "http://localhost:8080/students";
+constructor(private http:HttpClient) { }
+addStudent(student:Student){
+    return this.http.post<Student>(this.baseURL+"/addStudent",student);
+  }
+
+hence declare an ajax call from the given above function with post command and mention the data types in generics ,pass the value in the above given way .
+
+step 2: the value which is passed must be accepted from the java controller and it must give back the response after saving the data into database.
+
+_______________________________________________________________________________________________________________________________________________
+Angular life cycle hooks:
+_____________________________
+ngOnInit:
+"ngOnInit" is a lifecycle hook in Angular, a popular web framework used for building single-page client applications.
+ When a component is created, Angular goes through a series of initialization steps. "ngOnInit" is one of these lifecycle hooks, specifically used to perform initialization logic for the component after Angular has initialized the component's data-bound properties.
+
+Note: It initialize the initial values or Api for the component .
+
+******************************************************************
+ngOnDestroy:
+"ngOnDestroy" is another lifecycle hook in Angular, used to perform cleanup logic just before Angular destroys the directive or component.
+
+Note: it destroy the component when the component ends it call after its life cycle .
+
+*********************************************************************
+
+ngOnChanges:
+It's invoked when the data-bound input properties of a component change. This hook receives a SimpleChanges object containing the previous and current values of the input properties.
+
+eg:
+
+import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: '<p>Previous Value: {{ previousValue }}, Current Value: {{ currentValue }}</p>'
+})
+export class ChildComponent implements OnChanges {
+  @Input() someInputData: any;
+
+  previousValue: any;
+  currentValue: any;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.someInputData) {
+      this.previousValue = changes.someInputData.previousValue;
+      this.currentValue = changes.someInputData.currentValue;
+    }
+  }
+}
+
+Note: This will be invoked when we call the Input inside the function and when the input faces any changes this function will be invoked.
+************************************************************
+ngDocheck:
+
+ngDoCheck is an Angular lifecycle hook that provides a developer the opportunity to detect and act upon changes that Angular doesn't detect on its own.
+
+Note: It will check each second even the mouse outclick ,hence it will watch the changes very closely to the component . Must not do any complex action in do check which may lead to infinte job done .
+
+****************************************************
+ngAFterViewInit:
+When Angular constructs the component's view, renders the initial data bindings, and sets up child views (if any), it invokes the ngAfterViewInit hook. This is a good place to perform any operations that require the component's view and its child views to be fully initialized.
+
+Note: The function generally declared in parent component where it will be invoked only after parent and child gets loaded.
+eg: The child can be loaded inside the parent component .
+**********************************************************
+ngafterviewchecked:
+the function generally declared in parent component where it will be invoked only after parent and child gets loaded .
+This function will denote when the child face updation in it .
+

@@ -1,0 +1,21 @@
+express edition 
+download media 
+express adavanced 
+select the destiny folder 
+click dowload 
+open folder
+click and install the exes
+window appear -choose stand alone 
+asure extrnsion uncheck
+click local db -check
+choose default instance
+check grand perform -next
+enter the password
+click next
+installtion done 
+
+
+click ssms
+click free download ssms 
+install it on default location 
+

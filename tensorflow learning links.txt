@@ -1,0 +1,7 @@
+ Narayan Tips: https://knowyourdata-tfds.withgoogle.com/
+[23/08, 11:54 pm] Narayan Tips: https://knowyourdata-tfds.withgoogle.com/#dataset=coco_captions&tab=RELATIONS&relations=kyd%2Fcoco_captions%2Fcaptions_words_gendered,kyd%2Fcloud_vision%2Flabel&draw=kyd/coco_captions/objects_label,bbox,bbox
+[23/08, 11:54 pm] Narayan Tips: https://www.tensorflow.org/guide/keras
+[23/08, 11:55 pm] Narayan Tips: https://www.tensorflow.org/guide/keras/functional_api
+[23/08, 11:55 pm] Narayan Tips: https://www.tensorflow.org/guide/keras/sequential_model
+[23/08, 11:55 pm] Narayan Tips: https://www.tensorflow.org/tutorials/distribute/keras
+[23/08, 11:57 pm] Narayan Tips: https://keras.io/keras_cv/

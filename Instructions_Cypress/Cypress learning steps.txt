@@ -1,0 +1,97 @@
+cypress components to learn :
+cypress locators 
+cypress inbuild plugin locator
+Basic assertion on locators :eg :should(have.length,4)
+work with invisible locators 
+how to work with invisible locators using parent class 
+(for the above process - select only the class and the assert the number of elements)
+how to automate and verify checkbox
+how to select the options in static dropdownbox 
+how to select the options in dynamic dropdownbox 
+how to handle the alertbox 
+How to handle mouse Hover
+how to handle the Tables using cypress
+how to handle remove target page 
+how to handling with frames 
+how to manage the child window by removing target
+
+how to pass the argument from fixture json file to main file .
+how to use support file with main file 
+how to create a class file and use it with main file to attain page object model
+ 
+how to edit the config  for runtime for the specfic task in main file.
+how to edit calculate the sum from the given values and test the resultant value .
+
+how to run the project file using commandline commands and perform the test 
+eg:node_modules\.bin\cypress run --spec cypress/e2e/nivisample/firstproject.js --env url=https://www.amazon.com --headed
+
+how to run a test with cypress dashboard- Login with mail id in cypress dashboard ,copy the projectid to config.js, take the key to perform run in your terminal .
+
+eg:npx cypress run --record --key a19caf5c-6a3f-4f96-ad2a-2d8554179cde 
+
+how to generate mocha report- install mocha in your system 
+
+
+
+
+eg: npm install --save-dev mochawesome   
+
+npm install mocha    
+
+add this -  "reporter":"mochawesome"  to your package.json
+
+now run the mocha test -  eg:node_modules\.bin\cypress run --reporter mochawesome --spec cypress\e2e\nivisample\firstproject.cy.js
+
+
+Understanding the npm scripts:
+scripts:{
+"test":"node_modules\\.bin\\cypress run"
+"headtest":npm run test -- --headed
+"chrometest":npm run test -- -- browser chrome --parallel
+
+// running multiple spec file 
+eg: 
+"Greenkart":"npm run test -- --spec \"cypress//integration/greenkart/*\""
+
+Retries: add the below commands to cypress.config.js
+retries:{
+"runmode":1
+}
+
+
+
+Testing API using Route() 
+cy.server()
+cy.route('GET','comments/*').as('getComment')
+cy.get('.network-btn').click()
+cy.wait('@getComment').its('status').should('eq',200)
+cy.route('POST','/comments').as('postComment')
+cy.get('@postComment').should(xhr)=>{
+expect(xhr.requestBody).to.include('email')
+}
+
+mocking the webiste :
+cy.server()
+cy.route({
+method:'PUT',
+url:'comments/*',
+status:404,
+response:{ error:"hey comment do not exist"},
+delay:1000}).as('update')
+cy.get('.ntework_click').click()
+cy.get('.network_put_comment').should('contain','hey comment do not exist')
+
+
+API testing using Request()
+
+cy.request('POST',"http://216.10.245.166/Libriary/Addbook.php',{
+name:"learn"
+"isbn":bcdss"}).then(funtion(response){
+expect(response.body).to.have.property("msg",successfully added")
+
+
+
+
+
+
+

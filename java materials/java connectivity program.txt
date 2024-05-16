@@ -1,0 +1,38 @@
+SQL simple JDBC connecting program :
+
+package com.exterro.Connectivity;
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+
+
+public class Jdbc_Connectivity {
+    public static void main(String[] args) throws ClassNotFoundException {
+
+    try {
+
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+        String url = "jdbc:sqlserver://LT-62DY2X2:1433;databaseName=jdbc_connecting;encrypt=true;trustServerCertificate=true";
+        String user = "sa";
+        String password = "exterro-123456";
+        Connection connection;
+        connection = DriverManager.getConnection(url, user, password);
+        String inserting="insert into connect values(01,'nivi',23)";
+        Statement statement = connection.createStatement();
+    
+        statement.execute(inserting);
+        connection.close();
+
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+        }
+        }

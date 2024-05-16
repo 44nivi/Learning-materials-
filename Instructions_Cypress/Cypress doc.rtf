@@ -1,0 +1,137 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 Behavior-driven development (BDD) and keywords are both widely used techniques to facilitate automated testing. The approaches are similar in that tests can be written in a business-readable, domain-specific language.\par
+How the approaches are used is largely up to the teams using them, but from the projects I have seen, it seems BDD scenarios work best for communication among domain users, developers, and testers. When you want to use them for automation, they need more details than humans would need.\par
+BDD tests can be efficiently automated with keywords, thus avoiding the need of a scripting or programming language like Ruby or C# and minimizing the involvement of developers.\par
+Here is an example from Wikipedia of a simple BDD scenario:\par
+Given a customer previously bought a black sweater from me\par
+And I currently have three black sweaters left in stock\par
+When he returns the sweater for a refund\par
+Then I should have four black sweaters in stock\par
+\par
+\b BDD (Behavior-Driven Development) frameworks offer several benefits and are commonly used in software development and testing. Here are some of the key uses and advantages of BDD frameworks:\par
+Collaboration\b0 : BDD promotes collaboration among developers, testers, and stakeholders by providing a common language for communication. The use of feature files with plain language statements helps bridge the gap between technical and non-technical team members, allowing everyone to understand the expected behavior of the software.\par
+\b Requirement Clarity\b0 : BDD frameworks facilitate the creation of executable specifications or feature files that capture the desired behavior of the software. These specifications serve as living documentation, ensuring that the requirements are clear, understandable, and testable.\par
+\b Test Automation\b0 : BDD frameworks enable the creation of automated tests based on the behavior described in the feature files. By associating step definitions with each step in the feature files, the framework can execute the corresponding code to simulate user actions and validate expected outcomes. This automation helps ensure consistent and efficient testing, saving time and effort.\par
+\par
+Behavior Validation: BDD focuses on the behavior and outcomes of the software rather than just individual test cases. By structuring tests around user stories and scenarios, BDD frameworks encourage developers and testers to think from the user's perspective. This approach promotes a holistic view of the software's behavior, allowing for comprehensive validation of end-to-end functionality.\par
+\par
+Continuous Integration and Delivery: BDD frameworks integrate well with continuous integration and delivery (CI/CD) pipelines. Automated BDD tests can be incorporated into the CI/CD workflow, running on every code commit or deployment, ensuring that the software meets the specified behavior at all times. This helps catch any regressions or issues early in the development process.\par
+\par
+Test Reporting and Traceability: BDD frameworks often provide detailed test reports, highlighting the status and outcomes of each scenario. These reports offer visibility into the test coverage, allowing teams to track progress, identify failures, and prioritize bug fixes. Additionally, the traceability between the feature files, step definitions, and automated tests helps in identifying the exact point of failure, aiding in debugging and troubleshooting.\par
+\par
+Tag List: A tag list is a collection of tags that allows you to combine multiple tags with logical operators. This is useful when you want to execute scenarios that have any of the specified tags or meet specific criteria.\par
+\b Example\b0 :\par
+\par
+gherkin\par
+Copy code\par
+@smoke\par
+Scenario: User can log in successfully\par
+  ...\par
+\par
+@regression\par
+Scenario: User can reset their password\par
+  ...\par
+\par
+@sanity\par
+Scenario: User can access the home page\par
+  ...\par
+\par
+@ui\par
+Scenario: User can perform actions on the dashboard\par
+  ...\par
+Run scenarios tagged as "@smoke" or "@regression":\par
+\par
+cucumber --tags @smoke,@regression\par
+Run scenarios tagged as "@ui" but not "@sanity":\par
+\par
+cucumber --tags @ui --tags ~@sanity\par
+In the above example, the logical operator ~ is used to exclude the scenarios tagged as "@sanity" from the execution.\par
+\par
+Tags and tag lists provide flexibility and control in executing subsets of scenarios or feature files during testing, allowing you to focus on specific aspects or categories of tests as per your requirements.\par
+\par
+In Cypress, a popular JavaScript testing framework for web applications, you can create reusable methods using custom commands. Custom commands allow you to extend Cypress with your own functionality and create reusable actions that can be used across multiple tests. Here's an example of creating reusable methods in Cypress:\par
+\par
+\b Custom Commands:\par
+\b0 Custom commands are defined in the commands.js file in your Cypress project. These commands can be used to encapsulate common actions or operations performed during tests.\par
+Example commands.js:\par
+\par
+javascript\par
+Copy code\par
+Cypress.Commands.add("login", (username, password) => \{\par
+  // Code to perform login action\par
+\});\par
+\par
+Cypress.Commands.add("navigateToPage", (pageName) => \{\par
+  // Code to navigate to the specified page\par
+\});\par
+\par
+Cypress.Commands.add("clickElement", (selector) => \{\par
+  // Code to perform a click action on the element identified by the selector\par
+\});\par
+Using Custom Commands:\par
+After defining the custom commands, you can use them in your test files by calling the command names you defined.\par
+Example usage in a test file:\par
+\par
+javascript\par
+Copy code\par
+describe("Login Test", () => \{\par
+  it("should log in successfully", () => \{\par
+    cy.login("username", "password");\par
+    cy.navigateToPage("dashboard");\par
+    cy.clickElement("#logout-button");\par
+    // Additional test assertions or actions\par
+  \});\par
+\});\par
+In the example above, the custom commands login(), navigateToPage(), and clickElement() are used to perform login, navigate to a specific page, and click an element respectively. These commands encapsulate the corresponding actions and can be reused across multiple tests.\par
+\par
+By leveraging custom commands in Cypress, you can create reusable methods that simplify test development, promote code reuse, and enhance the maintainability and readability of your tests.\par
+\par
+In Cypress, you can use property files or configuration files to store locators or any other configuration data that needs to be reused across tests. Although Cypress does not have built-in support for property files, you can leverage JavaScript or JSON files to achieve a similar effect. Here's an example approach:\par
+\par
+\b Create a configuration file:\par
+\b0 Create a JavaScript or JSON file to store your locator properties. Let's assume we create a locators.js file.\par
+Example locators.js:\par
+\par
+javascript\par
+Copy code\par
+const locators = \{\par
+  loginPage: \{\par
+    usernameInput: '[data-testid="username-input"]',\par
+    passwordInput: '[data-testid="password-input"]',\par
+    loginButton: '[data-testid="login-button"]',\par
+  \},\par
+  dashboardPage: \{\par
+    welcomeMessage: '[data-testid="welcome-message"]',\par
+    logoutButton: '[data-testid="logout-button"]',\par
+  \},\par
+\};\par
+\par
+export default locators;\par
+Import and use locators:\par
+In your test files, you can import the locators.js file and access the locators as needed.\par
+Example usage in a test file:\par
+\par
+javascript\par
+Copy code\par
+import locators from "./locators";\par
+\par
+describe("Login Test", () => \{\par
+  it("should log in successfully", () => \{\par
+    cy.get(locators.loginPage.usernameInput).type("username");\par
+    cy.get(locators.loginPage.passwordInput).type("password");\par
+    cy.get(locators.loginPage.loginButton).click();\par
+    \par
+    cy.get(locators.dashboardPage.welcomeMessage).should("be.visible");\par
+    cy.get(locators.dashboardPage.logoutButton).click();\par
+    \par
+    // Additional test assertions or actions\par
+  \});\par
+\});\par
+In the above example, the locators.js file is imported, and the locator properties are accessed using dot notation (locators.loginPage.usernameInput, locators.dashboardPage.welcomeMessage, etc.). This approach centralizes the locators in a separate file, making it easier to manage and reuse them across multiple tests.\par
+\par
+Note: Remember to update the locators in the locators.js file whenever there are changes to the application UI.\par
+\par
+By using a separate configuration file like locators.js to store your locators, you can improve test maintainability, reduce code duplication, and have a centralized location for managing and updating your locators.\par
+}
+ 

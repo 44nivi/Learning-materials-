@@ -1,0 +1,11 @@
+Java script Teaching :
+Print Hello world using java script - in console,alert,window
+Understanding the datatypes in java script 
+Loops and conditions in java script
+Logical operators and Assignment in js
+Arrays and its methods with examples 
+functions in java scripts
+Understanding var,let ,const keyword in js 
+String and its related fucntion in js 
+what are java script objects ?
+Classes and its properties , methods in java script .
